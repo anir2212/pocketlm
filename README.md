@@ -19,7 +19,9 @@ make data
 uv run --no-sync pytest -q tests
 ```
 
-The scratch-model run and corpus build are reproducible locally. LoRA/DPO and GGUF evaluation code is present; see [results](RESULTS.md) for completed comparisons. The optional [Colab notebook](colab/Run_PocketLM.ipynb) runs one GPU experiment at a time. Build its upload archive with `uv run python -m colab.build_bundle`; GPU QLoRA has not been verified yet.
+The scratch-model run and corpus build are reproducible locally. LoRA/DPO and GGUF evaluation code is present; see [results](RESULTS.md) for completed comparisons. The optional [Colab notebook](colab/Run_PocketLM.ipynb) runs one GPU experiment at a time. Build its upload archive with `uv run python -m colab.build_bundle`.
+
+A completed NF4 QLoRA run has been returned from Colab and checked against the local corpus and training config. Its adapter was evaluated on the same 728 synthetic held-out requests as the local rank-8 LoRA adapter, using an unquantized CPU base for both. QLoRA got 604 exact targets and rank 8 got 637; the results include paired counts and limitations. The weights and Colab ZIP stay outside Git.
 
 ## Repository map
 

@@ -1,0 +1,55 @@
+{
+  "examples": 728,
+  "seed": 17,
+  "bootstrap_repetitions": 1000,
+  "left": {
+    "path": "runs/sft_tool_eval_full.json",
+    "sha256": "b3ec2aea05d1ea5f688499b722bc152a9b9edb349c8566fa6958b4c9927e9c77",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "grammar": null
+  },
+  "right": {
+    "path": "runs/qlora_tool_eval_full.json",
+    "sha256": "9eb22f5c64834347ebcb18105571933836bc3a8f5d7257afa837e976fc92b60c",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "grammar": null
+  },
+  "comparisons": {
+    "full_exact": {
+      "left_correct": 637,
+      "right_correct": 604,
+      "both_correct": 557,
+      "left_only": 80,
+      "right_only": 47,
+      "right_minus_left": -0.04532967032967033,
+      "paired_bootstrap_95pct": [
+        -0.07280219780219781,
+        -0.016483516483516484
+      ]
+    },
+    "target_valid": {
+      "left_correct": 701,
+      "right_correct": 670,
+      "both_correct": 659,
+      "left_only": 42,
+      "right_only": 11,
+      "right_minus_left": -0.042582417582417584,
+      "paired_bootstrap_95pct": [
+        -0.059065934065934064,
+        -0.023351648351648352
+      ]
+    },
+    "json_valid": {
+      "left_correct": 725,
+      "right_correct": 728,
+      "both_correct": 725,
+      "left_only": 0,
+      "right_only": 3,
+      "right_minus_left": 0.004120879120879121,
+      "paired_bootstrap_95pct": [
+        0.0,
+        0.009615384615384616
+      ]
+    }
+  }
+}
