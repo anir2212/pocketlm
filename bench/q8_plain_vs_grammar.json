@@ -1,0 +1,55 @@
+{
+  "examples": 728,
+  "seed": 17,
+  "bootstrap_repetitions": 1000,
+  "left": {
+    "path": "runs/gguf_eval_Q8_0_plain.json",
+    "sha256": "23e7593d9b2b9bc1ac564f3b2c8534e0edcad361ffac1f8faaef083c0e0a6c2c",
+    "model": "artifacts/model-Q8_0.gguf",
+    "grammar": null
+  },
+  "right": {
+    "path": "runs/gguf_eval_Q8_0_grammar.json",
+    "sha256": "3a9aa7a55974665f94e5417d8966415908c138d234f46015240a488443fee9d0",
+    "model": "artifacts/model-Q8_0.gguf",
+    "grammar": "quant/grammar.gbnf"
+  },
+  "comparisons": {
+    "full_exact": {
+      "left_correct": 643,
+      "right_correct": 647,
+      "both_correct": 643,
+      "left_only": 0,
+      "right_only": 4,
+      "right_minus_left": 0.005494505494505495,
+      "paired_bootstrap_95pct": [
+        0.0013736263736263737,
+        0.01098901098901099
+      ]
+    },
+    "target_valid": {
+      "left_correct": 713,
+      "right_correct": 728,
+      "both_correct": 713,
+      "left_only": 0,
+      "right_only": 15,
+      "right_minus_left": 0.020604395604395604,
+      "paired_bootstrap_95pct": [
+        0.01098901098901099,
+        0.03159340659340659
+      ]
+    },
+    "json_valid": {
+      "left_correct": 724,
+      "right_correct": 728,
+      "both_correct": 724,
+      "left_only": 0,
+      "right_only": 4,
+      "right_minus_left": 0.005494505494505495,
+      "paired_bootstrap_95pct": [
+        0.0013736263736263737,
+        0.01098901098901099
+      ]
+    }
+  }
+}

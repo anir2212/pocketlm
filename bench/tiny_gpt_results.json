@@ -1,0 +1,82 @@
+{
+  "dataset": "roneneldan/TinyStories",
+  "dataset_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+  "train_stories": 5000,
+  "validation_stories": 500,
+  "train_bytes": 4197328,
+  "validation_bytes": 406229,
+  "parameters": 12807680,
+  "device": "mps",
+  "seed": 7,
+  "steps": 1000,
+  "duration_seconds": 64.26746474999527,
+  "curve": [
+    {
+      "step": 1,
+      "train_loss": 5.679093360900879,
+      "validation_loss": 4.311171340942383,
+      "validation_perplexity": 74.52773522040677
+    },
+    {
+      "step": 100,
+      "train_loss": 2.370072364807129,
+      "validation_loss": 2.3984689712524414,
+      "validation_perplexity": 11.00631249355554
+    },
+    {
+      "step": 200,
+      "train_loss": 2.2599964141845703,
+      "validation_loss": 2.324336814880371,
+      "validation_perplexity": 10.219900152158937
+    },
+    {
+      "step": 300,
+      "train_loss": 2.307619094848633,
+      "validation_loss": 2.2262659549713133,
+      "validation_perplexity": 9.26520471460452
+    },
+    {
+      "step": 400,
+      "train_loss": 2.0683257579803467,
+      "validation_loss": 2.0020169258117675,
+      "validation_perplexity": 7.4039743163127705
+    },
+    {
+      "step": 500,
+      "train_loss": 1.9952220916748047,
+      "validation_loss": 1.8531169176101685,
+      "validation_perplexity": 6.379673481572775
+    },
+    {
+      "step": 600,
+      "train_loss": 1.879149317741394,
+      "validation_loss": 1.7029942989349365,
+      "validation_perplexity": 5.490362590313319
+    },
+    {
+      "step": 700,
+      "train_loss": 1.7586545944213867,
+      "validation_loss": 1.6519243240356445,
+      "validation_perplexity": 5.217009390584395
+    },
+    {
+      "step": 800,
+      "train_loss": 1.5903351306915283,
+      "validation_loss": 1.5567328929901123,
+      "validation_perplexity": 4.743299037053469
+    },
+    {
+      "step": 900,
+      "train_loss": 1.5639429092407227,
+      "validation_loss": 1.474487066268921,
+      "validation_perplexity": 4.368794296155736
+    },
+    {
+      "step": 1000,
+      "train_loss": 1.7139570713043213,
+      "validation_loss": 1.4634324550628661,
+      "validation_perplexity": 4.3207649358406
+    }
+  ],
+  "sample": "Once upon a time, there was nooking tiyg, she boy waenousiall findang for and Sammy a cathere hell his him they couldn't his mrave byou "
+}

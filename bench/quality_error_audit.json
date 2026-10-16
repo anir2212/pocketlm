@@ -1,0 +1,999 @@
+{
+  "input": {
+    "path": "data/processed/test.jsonl",
+    "sha256": "7e928ba973aec8e206333617252f136eb4bf53fb26eaee151157dc36fd75d30d",
+    "examples": 728
+  },
+  "category_order": [
+    "invalid_json_object",
+    "invalid_target_schema",
+    "wrong_response_kind",
+    "wrong_tool_sequence",
+    "wrong_arguments_or_payload",
+    "exact"
+  ],
+  "modes": {
+    "F16_plain": {
+      "path": "runs/gguf_eval_F16_plain.json",
+      "sha256": "106b3b0098a896c6ab2ccfba4b26a91ab299e0cccf8fe529e23a68761a1c1b47",
+      "counts": {
+        "exact": 641,
+        "invalid_target_schema": 12,
+        "wrong_tool_sequence": 17,
+        "wrong_response_kind": 27,
+        "wrong_arguments_or_payload": 27,
+        "invalid_json_object": 4
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 71,
+          "errors": 0
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 108,
+          "errors": 1
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 0,
+          "errors": 21
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 11,
+          "errors": 12
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 40,
+          "errors": 24
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 14,
+          "errors": 8
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 27,
+          "errors": 1
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 16,
+          "errors": 9
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 117,
+          "errors": 0
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "invalid_target_schema": [
+          "domain_07950",
+          "domain_02340",
+          "domain_01060",
+          "domain_04970",
+          "domain_05130"
+        ],
+        "wrong_tool_sequence": [
+          "domain_07420",
+          "domain_01690",
+          "domain_06490",
+          "domain_00030",
+          "domain_03390"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910",
+          "domain_00370"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_05630",
+          "domain_00640",
+          "domain_03240",
+          "domain_03650"
+        ],
+        "invalid_json_object": [
+          "domain_00750",
+          "domain_06370",
+          "domain_00390",
+          "domain_01200"
+        ]
+      }
+    },
+    "F16_grammar": {
+      "path": "runs/gguf_eval_F16_grammar.json",
+      "sha256": "69c0354a270a0bc6282f083e505548b3cb05411139e857b529ebca9222821540",
+      "counts": {
+        "exact": 646,
+        "wrong_tool_sequence": 27,
+        "wrong_response_kind": 27,
+        "wrong_arguments_or_payload": 28
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 71,
+          "errors": 0
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 109,
+          "errors": 0
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 0,
+          "errors": 21
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 11,
+          "errors": 12
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 43,
+          "errors": 21
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 14,
+          "errors": 8
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 28,
+          "errors": 0
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 16,
+          "errors": 9
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 117,
+          "errors": 0
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "wrong_tool_sequence": [
+          "domain_07950",
+          "domain_02340",
+          "domain_07420",
+          "domain_01690",
+          "domain_00750"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910",
+          "domain_00370"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_05630",
+          "domain_00640",
+          "domain_03240",
+          "domain_03650"
+        ]
+      }
+    },
+    "Q8_0_plain": {
+      "path": "runs/gguf_eval_Q8_0_plain.json",
+      "sha256": "23e7593d9b2b9bc1ac564f3b2c8534e0edcad361ffac1f8faaef083c0e0a6c2c",
+      "counts": {
+        "exact": 643,
+        "invalid_target_schema": 11,
+        "wrong_tool_sequence": 18,
+        "wrong_response_kind": 24,
+        "wrong_arguments_or_payload": 28,
+        "invalid_json_object": 4
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 71,
+          "errors": 0
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 108,
+          "errors": 1
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 0,
+          "errors": 21
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 11,
+          "errors": 12
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 40,
+          "errors": 24
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 15,
+          "errors": 7
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 27,
+          "errors": 1
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 17,
+          "errors": 8
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 117,
+          "errors": 0
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "invalid_target_schema": [
+          "domain_07950",
+          "domain_02340",
+          "domain_06830",
+          "domain_04970",
+          "domain_00730"
+        ],
+        "wrong_tool_sequence": [
+          "domain_07420",
+          "domain_01690",
+          "domain_06490",
+          "domain_00030",
+          "domain_03390"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910",
+          "domain_00370"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_05630",
+          "domain_00640",
+          "domain_03240",
+          "domain_03650"
+        ],
+        "invalid_json_object": [
+          "domain_00750",
+          "domain_06370",
+          "domain_00390",
+          "domain_01200"
+        ]
+      }
+    },
+    "Q8_0_grammar": {
+      "path": "runs/gguf_eval_Q8_0_grammar.json",
+      "sha256": "3a9aa7a55974665f94e5417d8966415908c138d234f46015240a488443fee9d0",
+      "counts": {
+        "exact": 647,
+        "wrong_tool_sequence": 28,
+        "wrong_response_kind": 24,
+        "wrong_arguments_or_payload": 29
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 71,
+          "errors": 0
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 109,
+          "errors": 0
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 0,
+          "errors": 21
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 11,
+          "errors": 12
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 42,
+          "errors": 22
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 15,
+          "errors": 7
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 28,
+          "errors": 0
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 17,
+          "errors": 8
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 117,
+          "errors": 0
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "wrong_tool_sequence": [
+          "domain_07950",
+          "domain_02340",
+          "domain_07420",
+          "domain_01690",
+          "domain_00750"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910",
+          "domain_00370"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_05630",
+          "domain_00640",
+          "domain_03240",
+          "domain_03650"
+        ]
+      }
+    },
+    "Q5_K_M_plain": {
+      "path": "runs/gguf_eval_Q5_K_M_plain.json",
+      "sha256": "79e276ea9954835f852ec708365c5b88f646cf12b4589b199988ae8d5b1a0c24",
+      "counts": {
+        "exact": 644,
+        "wrong_tool_sequence": 16,
+        "invalid_json_object": 10,
+        "wrong_response_kind": 19,
+        "wrong_arguments_or_payload": 23,
+        "invalid_target_schema": 16
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 70,
+          "errors": 1
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 108,
+          "errors": 1
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 4,
+          "errors": 17
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 15,
+          "errors": 8
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 36,
+          "errors": 28
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 16,
+          "errors": 6
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 24,
+          "errors": 4
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 17,
+          "errors": 8
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 117,
+          "errors": 0
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "wrong_tool_sequence": [
+          "domain_07950",
+          "domain_06490",
+          "domain_03390",
+          "domain_01890",
+          "domain_06830"
+        ],
+        "invalid_json_object": [
+          "domain_02340",
+          "domain_07420",
+          "domain_00750",
+          "domain_06370",
+          "domain_06870"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_02960",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_03630",
+          "domain_00640",
+          "domain_03240",
+          "domain_03650"
+        ],
+        "invalid_target_schema": [
+          "domain_07890",
+          "domain_00030",
+          "domain_01060",
+          "domain_00190",
+          "domain_04320"
+        ]
+      }
+    },
+    "Q5_K_M_grammar": {
+      "path": "runs/gguf_eval_Q5_K_M_grammar.json",
+      "sha256": "381751b130d361a669d34ed5b886c987aa87cb43fefd80826a932e73bf5d5724",
+      "counts": {
+        "exact": 656,
+        "wrong_tool_sequence": 28,
+        "wrong_response_kind": 20,
+        "wrong_arguments_or_payload": 24
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 70,
+          "errors": 1
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 109,
+          "errors": 0
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 4,
+          "errors": 17
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 15,
+          "errors": 8
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 44,
+          "errors": 20
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 16,
+          "errors": 6
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 27,
+          "errors": 1
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 17,
+          "errors": 8
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 117,
+          "errors": 0
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "wrong_tool_sequence": [
+          "domain_07950",
+          "domain_02340",
+          "domain_07420",
+          "domain_00750",
+          "domain_06490"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_02960",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_03630",
+          "domain_00640",
+          "domain_03240",
+          "domain_03650"
+        ]
+      }
+    },
+    "Q4_K_M_plain": {
+      "path": "runs/gguf_eval_Q4_K_M_plain.json",
+      "sha256": "9120189ea38baa3a01340c7d1d5a5aa40b67b6157b9635165ffb90d43b07d59c",
+      "counts": {
+        "exact": 616,
+        "wrong_tool_sequence": 30,
+        "invalid_target_schema": 25,
+        "invalid_json_object": 9,
+        "wrong_response_kind": 24,
+        "wrong_arguments_or_payload": 24
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 71,
+          "errors": 0
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 107,
+          "errors": 2
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 0,
+          "errors": 21
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 3,
+          "errors": 20
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 32,
+          "errors": 32
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 15,
+          "errors": 7
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 21,
+          "errors": 7
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 14,
+          "errors": 11
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 116,
+          "errors": 1
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "wrong_tool_sequence": [
+          "domain_01330",
+          "domain_01690",
+          "domain_06490",
+          "domain_03390",
+          "domain_01890"
+        ],
+        "invalid_target_schema": [
+          "domain_07950",
+          "domain_07420",
+          "domain_06680",
+          "domain_02050",
+          "domain_00030"
+        ],
+        "invalid_json_object": [
+          "domain_02340",
+          "domain_00750",
+          "domain_06370",
+          "domain_06870",
+          "domain_05950"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_04420",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_03630",
+          "domain_05630",
+          "domain_03240",
+          "domain_03650"
+        ]
+      }
+    },
+    "Q4_K_M_grammar": {
+      "path": "runs/gguf_eval_Q4_K_M_grammar.json",
+      "sha256": "891f9930d0f8249b27600db071abb83caa3f596da2ce26c779668c1172ef4475",
+      "counts": {
+        "exact": 629,
+        "wrong_tool_sequence": 50,
+        "wrong_response_kind": 24,
+        "wrong_arguments_or_payload": 25
+      },
+      "strata": {
+        "clarification": {
+          "examples": 71,
+          "exact": 71,
+          "errors": 0
+        },
+        "close_app": {
+          "examples": 109,
+          "exact": 107,
+          "errors": 2
+        },
+        "get_battery": {
+          "examples": 21,
+          "exact": 0,
+          "errors": 21
+        },
+        "get_device_status": {
+          "examples": 23,
+          "exact": 3,
+          "errors": 20
+        },
+        "launch_app": {
+          "examples": 21,
+          "exact": 21,
+          "errors": 0
+        },
+        "multi_call": {
+          "examples": 64,
+          "exact": 37,
+          "errors": 27
+        },
+        "refusal": {
+          "examples": 106,
+          "exact": 106,
+          "errors": 0
+        },
+        "set_brightness": {
+          "examples": 24,
+          "exact": 24,
+          "errors": 0
+        },
+        "set_dpi": {
+          "examples": 22,
+          "exact": 15,
+          "errors": 7
+        },
+        "set_fan_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_lighting": {
+          "examples": 28,
+          "exact": 28,
+          "errors": 0
+        },
+        "set_macro": {
+          "examples": 25,
+          "exact": 15,
+          "errors": 10
+        },
+        "set_performance_profile": {
+          "examples": 26,
+          "exact": 26,
+          "errors": 0
+        },
+        "set_sleep_timer": {
+          "examples": 117,
+          "exact": 116,
+          "errors": 1
+        },
+        "set_volume": {
+          "examples": 17,
+          "exact": 17,
+          "errors": 0
+        },
+        "toggle_mic": {
+          "examples": 28,
+          "exact": 17,
+          "errors": 11
+        }
+      },
+      "example_ids": {
+        "wrong_tool_sequence": [
+          "domain_01330",
+          "domain_07950",
+          "domain_02340",
+          "domain_07420",
+          "domain_01690"
+        ],
+        "wrong_response_kind": [
+          "domain_03170",
+          "domain_04420",
+          "domain_03070",
+          "domain_03570",
+          "domain_04910"
+        ],
+        "wrong_arguments_or_payload": [
+          "domain_05890",
+          "domain_03630",
+          "domain_05630",
+          "domain_03240",
+          "domain_03650"
+        ]
+      }
+    }
+  }
+}

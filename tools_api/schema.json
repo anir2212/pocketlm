@@ -1,0 +1,15 @@
+{
+  "set_lighting": {"zone": {"type": "string", "enum": ["keyboard", "mouse", "desk"]}, "color": {"type": "string", "enum": ["purple", "blue", "green", "red", "white"]}, "effect": {"type": "string", "enum": ["static", "breathing", "wave"]}},
+  "set_dpi": {"dpi": {"type": "integer", "enum": [400, 800, 1200, 1600, 3200]}},
+  "set_macro": {"key": {"type": "string", "enum": ["F1", "F2", "F3"]}, "action": {"type": "string", "enum": ["mute", "launch_browser", "screenshot"]}},
+  "set_fan_profile": {"profile": {"type": "string", "enum": ["quiet", "balanced", "performance"]}},
+  "set_performance_profile": {"profile": {"type": "string", "enum": ["eco", "balanced", "turbo"]}},
+  "get_battery": {},
+  "launch_app": {"name": {"type": "string", "enum": ["browser", "notes", "calculator"]}},
+  "close_app": {"name": {"type": "string", "enum": ["browser", "notes", "calculator"]}},
+  "set_volume": {"percent": {"type": "integer", "minimum": 0, "maximum": 100}},
+  "toggle_mic": {"enabled": {"type": "boolean"}},
+  "set_brightness": {"percent": {"type": "integer", "minimum": 0, "maximum": 100}},
+  "get_device_status": {},
+  "set_sleep_timer": {"minutes": {"type": "integer", "enum": [5, 10, 15, 30, 60]}}
+}

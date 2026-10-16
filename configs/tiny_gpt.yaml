@@ -1,0 +1,16 @@
+seed: 7
+dataset: roneneldan/TinyStories
+dataset_revision: f54c09fd23315a6f9c86f9dc80f725de7d8f9c64
+max_train_stories: 5000
+max_validation_stories: 500
+batch_size: 8
+block_size: 128
+steps: 1000
+eval_interval: 100
+learning_rate: 0.0003
+model:
+  vocab_size: 257
+  n_layer: 4
+  n_head: 8
+  n_embd: 512
+  dropout: 0.1

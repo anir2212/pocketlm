@@ -1,0 +1,55 @@
+{
+  "examples": 728,
+  "seed": 17,
+  "bootstrap_repetitions": 1000,
+  "left": {
+    "path": "runs/gguf_eval_F16_plain.json",
+    "sha256": "106b3b0098a896c6ab2ccfba4b26a91ab299e0cccf8fe529e23a68761a1c1b47",
+    "model": "artifacts/model-F16.gguf",
+    "grammar": null
+  },
+  "right": {
+    "path": "runs/gguf_eval_F16_grammar.json",
+    "sha256": "69c0354a270a0bc6282f083e505548b3cb05411139e857b529ebca9222821540",
+    "model": "artifacts/model-F16.gguf",
+    "grammar": "quant/grammar.gbnf"
+  },
+  "comparisons": {
+    "full_exact": {
+      "left_correct": 641,
+      "right_correct": 646,
+      "both_correct": 641,
+      "left_only": 0,
+      "right_only": 5,
+      "right_minus_left": 0.006868131868131868,
+      "paired_bootstrap_95pct": [
+        0.0013736263736263737,
+        0.013736263736263736
+      ]
+    },
+    "target_valid": {
+      "left_correct": 712,
+      "right_correct": 728,
+      "both_correct": 712,
+      "left_only": 0,
+      "right_only": 16,
+      "right_minus_left": 0.02197802197802198,
+      "paired_bootstrap_95pct": [
+        0.012362637362637362,
+        0.03296703296703297
+      ]
+    },
+    "json_valid": {
+      "left_correct": 724,
+      "right_correct": 728,
+      "both_correct": 724,
+      "left_only": 0,
+      "right_only": 4,
+      "right_minus_left": 0.005494505494505495,
+      "paired_bootstrap_95pct": [
+        0.0013736263736263737,
+        0.01098901098901099
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{"prompt": "set mouse lighting to purple", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "purple"}}}
+{"prompt": "set keyboard lighting to green", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "green"}}}
+{"prompt": "use balanced fan mode", "target": {"tool": "set_fan", "arguments": {"profile": "balanced"}}}
+{"prompt": "make my mouse purple", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "purple"}}}
+{"prompt": "set keyboard lighting to red", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "red"}}}
+{"prompt": "order me lunch", "target": {"refusal": "I can only control local device settings."}}
+{"prompt": "make my mouse red", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "red"}}}
+{"prompt": "set mouse DPI to 1600", "target": {"tool": "set_dpi", "arguments": {"dpi": 1600}}}
+{"prompt": "change my DPI", "target": {"clarification": "What DPI value would you like?"}}
+{"prompt": "what is the battery level?", "target": {"tool": "get_battery", "arguments": {}}}
+{"prompt": "set mouse lighting to green", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "green"}}}
+{"prompt": "launch my browser", "target": {"tool": "launch_app", "arguments": {"name": "browser"}}}
+{"prompt": "set mouse lighting to red", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "red"}}}
+{"prompt": "use quiet fan mode", "target": {"tool": "set_fan", "arguments": {"profile": "quiet"}}}
+{"prompt": "make my keyboard purple", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "purple"}}}
+{"prompt": "make my keyboard red", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "red"}}}
+{"prompt": "set mouse DPI to 400", "target": {"tool": "set_dpi", "arguments": {"dpi": 400}}}
+{"prompt": "use performance fan mode", "target": {"tool": "set_fan", "arguments": {"profile": "performance"}}}
+{"prompt": "set mouse DPI to 1200", "target": {"tool": "set_dpi", "arguments": {"dpi": 1200}}}
+{"prompt": "set mouse lighting to blue", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "blue"}}}
+{"prompt": "set keyboard lighting to blue", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "blue"}}}
+{"prompt": "set mouse DPI to 800", "target": {"tool": "set_dpi", "arguments": {"dpi": 800}}}
+{"prompt": "make my keyboard blue", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "blue"}}}
+{"prompt": "set keyboard lighting to purple", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "purple"}}}
+{"prompt": "set mouse DPI to 3200", "target": {"tool": "set_dpi", "arguments": {"dpi": 3200}}}
+{"prompt": "make my mouse green", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "green"}}}
+{"prompt": "make my keyboard green", "target": {"tool": "set_light", "arguments": {"zone": "keyboard", "color": "green"}}}
+{"prompt": "make my mouse blue", "target": {"tool": "set_light", "arguments": {"zone": "mouse", "color": "blue"}}}

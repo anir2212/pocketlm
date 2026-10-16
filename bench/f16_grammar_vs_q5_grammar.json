@@ -1,0 +1,55 @@
+{
+  "examples": 728,
+  "seed": 17,
+  "bootstrap_repetitions": 1000,
+  "left": {
+    "path": "runs/gguf_eval_F16_grammar.json",
+    "sha256": "69c0354a270a0bc6282f083e505548b3cb05411139e857b529ebca9222821540",
+    "model": "artifacts/model-F16.gguf",
+    "grammar": "quant/grammar.gbnf"
+  },
+  "right": {
+    "path": "runs/gguf_eval_Q5_K_M_grammar.json",
+    "sha256": "381751b130d361a669d34ed5b886c987aa87cb43fefd80826a932e73bf5d5724",
+    "model": "artifacts/model-Q5_K_M.gguf",
+    "grammar": "quant/grammar.gbnf"
+  },
+  "comparisons": {
+    "full_exact": {
+      "left_correct": 646,
+      "right_correct": 656,
+      "both_correct": 641,
+      "left_only": 5,
+      "right_only": 15,
+      "right_minus_left": 0.013736263736263736,
+      "paired_bootstrap_95pct": [
+        0.0013736263736263737,
+        0.0260989010989011
+      ]
+    },
+    "target_valid": {
+      "left_correct": 728,
+      "right_correct": 728,
+      "both_correct": 728,
+      "left_only": 0,
+      "right_only": 0,
+      "right_minus_left": 0.0,
+      "paired_bootstrap_95pct": [
+        0.0,
+        0.0
+      ]
+    },
+    "json_valid": {
+      "left_correct": 728,
+      "right_correct": 728,
+      "both_correct": 728,
+      "left_only": 0,
+      "right_only": 0,
+      "right_minus_left": 0.0,
+      "paired_bootstrap_95pct": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}
