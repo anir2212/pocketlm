@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+artifacts/
+runs/
+data/raw/
+data/processed/
+*.gguf
+*.safetensors
+*.pt
+!legacy/data.pt
+colab/*.zip

@@ -1,0 +1,55 @@
+{
+  "examples": 728,
+  "seed": 17,
+  "bootstrap_repetitions": 1000,
+  "left": {
+    "path": "runs/sft_tool_eval_full.json",
+    "sha256": "b3ec2aea05d1ea5f688499b722bc152a9b9edb349c8566fa6958b4c9927e9c77",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "grammar": null
+  },
+  "right": {
+    "path": "runs/gguf_eval_Q4_K_M_grammar.json",
+    "sha256": "891f9930d0f8249b27600db071abb83caa3f596da2ce26c779668c1172ef4475",
+    "model": "artifacts/model-Q4_K_M.gguf",
+    "grammar": "quant/grammar.gbnf"
+  },
+  "comparisons": {
+    "full_exact": {
+      "left_correct": 637,
+      "right_correct": 629,
+      "both_correct": 619,
+      "left_only": 18,
+      "right_only": 10,
+      "right_minus_left": -0.01098901098901099,
+      "paired_bootstrap_95pct": [
+        -0.0260989010989011,
+        0.004120879120879121
+      ]
+    },
+    "target_valid": {
+      "left_correct": 701,
+      "right_correct": 728,
+      "both_correct": 701,
+      "left_only": 0,
+      "right_only": 27,
+      "right_minus_left": 0.03708791208791209,
+      "paired_bootstrap_95pct": [
+        0.024725274725274724,
+        0.0521978021978022
+      ]
+    },
+    "json_valid": {
+      "left_correct": 725,
+      "right_correct": 728,
+      "both_correct": 725,
+      "left_only": 0,
+      "right_only": 3,
+      "right_minus_left": 0.004120879120879121,
+      "paired_bootstrap_95pct": [
+        0.0,
+        0.009615384615384616
+      ]
+    }
+  }
+}

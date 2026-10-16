@@ -1,0 +1,12 @@
+seed: 23
+model_id: Qwen/Qwen2.5-0.5B-Instruct
+model_revision: 7ae557604adf67be50417f59c2c2f167def9a775
+sample_prompts: 2000
+max_new_tokens: 160
+temperature: 0.8
+beta: 0.1
+learning_rate: 0.00001
+epochs: 1
+batch_size: 1
+gradient_accumulation_steps: 4
+max_length: 1024

@@ -1,0 +1,6 @@
+llama_cpp_revision: 23b0202a189c44a54625aadcb37a946dd1d6278d
+formats: [F16, Q8_0, Q5_K_M, Q4_K_M]
+context_length: 1024
+generation_tokens: 128
+benchmark_prompt_tokens: 512
+benchmark_generation_tokens: 128

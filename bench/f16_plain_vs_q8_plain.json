@@ -1,0 +1,55 @@
+{
+  "examples": 728,
+  "seed": 17,
+  "bootstrap_repetitions": 1000,
+  "left": {
+    "path": "runs/gguf_eval_F16_plain.json",
+    "sha256": "106b3b0098a896c6ab2ccfba4b26a91ab299e0cccf8fe529e23a68761a1c1b47",
+    "model": "artifacts/model-F16.gguf",
+    "grammar": null
+  },
+  "right": {
+    "path": "runs/gguf_eval_Q8_0_plain.json",
+    "sha256": "23e7593d9b2b9bc1ac564f3b2c8534e0edcad361ffac1f8faaef083c0e0a6c2c",
+    "model": "artifacts/model-Q8_0.gguf",
+    "grammar": null
+  },
+  "comparisons": {
+    "full_exact": {
+      "left_correct": 641,
+      "right_correct": 643,
+      "both_correct": 639,
+      "left_only": 2,
+      "right_only": 4,
+      "right_minus_left": 0.0027472527472527475,
+      "paired_bootstrap_95pct": [
+        -0.004120879120879121,
+        0.009615384615384616
+      ]
+    },
+    "target_valid": {
+      "left_correct": 712,
+      "right_correct": 713,
+      "both_correct": 710,
+      "left_only": 2,
+      "right_only": 3,
+      "right_minus_left": 0.0013736263736263737,
+      "paired_bootstrap_95pct": [
+        -0.004120879120879121,
+        0.008241758241758242
+      ]
+    },
+    "json_valid": {
+      "left_correct": 724,
+      "right_correct": 724,
+      "both_correct": 724,
+      "left_only": 0,
+      "right_only": 0,
+      "right_minus_left": 0.0,
+      "paired_bootstrap_95pct": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

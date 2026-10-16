@@ -1,0 +1,74 @@
+{
+  "rows": [
+    {
+      "source": "runs/latency_F16_grammar.json",
+      "source_sha256": "c858338c6ad9d45f944a5cd61c064ee87b974276b0b20ccb8211f079e9d8f028",
+      "model": "artifacts/model-F16.gguf",
+      "grammar": "quant/grammar.gbnf",
+      "hardware": {
+        "device": "local CPU",
+        "threads": 4,
+        "gpu_offload_layers": 0,
+        "platform": "macOS-15.3.1-arm64-arm-64bit",
+        "machine": "arm64",
+        "processor": "arm",
+        "logical_cpus": 11
+      },
+      "file_size_bytes": 994156448,
+      "prompt_tokens_per_second": 1174.110018,
+      "generation_tokens_per_second": 101.13981,
+      "bench_repetitions": 3,
+      "time_to_first_token_seconds_one_request": 0.6617334170150571,
+      "end_to_end_seconds_one_request": 0.8145921250106767,
+      "generated_tokens_one_request": 15,
+      "peak_server_rss_bytes_sampled": 1206353920
+    },
+    {
+      "source": "runs/latency_Q4_K_M_grammar.json",
+      "source_sha256": "1a9f1523328d903046da378f1d797a5d31c051af533b66d2bf069de7ffc31ae3",
+      "model": "artifacts/model-Q4_K_M.gguf",
+      "grammar": "quant/grammar.gbnf",
+      "hardware": {
+        "device": "local CPU",
+        "threads": 4,
+        "gpu_offload_layers": 0,
+        "platform": "macOS-15.3.1-arm64-arm-64bit",
+        "machine": "arm64",
+        "processor": "arm",
+        "logical_cpus": 11
+      },
+      "file_size_bytes": 397807520,
+      "prompt_tokens_per_second": 1074.297874,
+      "generation_tokens_per_second": 178.61691,
+      "bench_repetitions": 3,
+      "time_to_first_token_seconds_one_request": 0.6521026249974966,
+      "end_to_end_seconds_one_request": 0.7458694580127485,
+      "generated_tokens_one_request": 15,
+      "peak_server_rss_bytes_sampled": 775077888
+    },
+    {
+      "source": "runs/latency_Q4_K_M_plain.json",
+      "source_sha256": "bb418e8372a45bedacf98581b10ca68f96ca61a89daaeec8355740ae7a129a1a",
+      "model": "artifacts/model-Q4_K_M.gguf",
+      "grammar": null,
+      "hardware": {
+        "device": "local CPU",
+        "threads": 4,
+        "gpu_offload_layers": 0,
+        "platform": "macOS-15.3.1-arm64-arm-64bit",
+        "machine": "arm64",
+        "processor": "arm",
+        "logical_cpus": 11
+      },
+      "file_size_bytes": 397807520,
+      "prompt_tokens_per_second": 1081.030863,
+      "generation_tokens_per_second": 184.320472,
+      "bench_repetitions": 3,
+      "time_to_first_token_seconds_one_request": 0.7569246669881977,
+      "end_to_end_seconds_one_request": 0.8621769169985782,
+      "generated_tokens_one_request": 15,
+      "peak_server_rss_bytes_sampled": 753221632
+    }
+  ],
+  "note": "llama-bench throughput has fixed lengths; HTTP latency is one request. The bench rows do not apply the grammar."
+}

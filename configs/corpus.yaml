@@ -1,0 +1,16 @@
+seed: 17
+function_dataset_revision: e7f4b6456019f5d8bcb991ef0dd67d8ff23221ac
+chat_dataset_revision: bdd27f4d94b9c1f951818a7da7fd7aeea5dbff1a
+tokenizer_revision: 7ae557604adf67be50417f59c2c2f167def9a775
+domain_examples: 8000
+out_of_scope_fraction: 0.15
+clarification_fraction: 0.10
+multi_call_fraction: 0.15
+heldout_tools: [close_app, set_sleep_timer]
+test_fraction: 0.10
+mix:
+  domain: 0.6
+  general_function: 0.3
+  general_chat: 0.1
+general_function_limit: 6500
+general_chat_limit: 1000
