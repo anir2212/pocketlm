@@ -1,0 +1,42 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": null,
+  "device": "mps",
+  "limit_per_task": 100,
+  "num_fewshot": 0,
+  "results": {
+    "arc_easy": {
+      "name": "arc_easy",
+      "alias": "arc_easy",
+      "sample_len": 100,
+      "acc,none": 0.47,
+      "acc_stderr,none": 0.05016135580465919,
+      "acc_norm,none": 0.43,
+      "acc_norm_stderr,none": 0.049756985195624305
+    },
+    "hellaswag": {
+      "name": "hellaswag",
+      "alias": "hellaswag",
+      "sample_len": 100,
+      "acc,none": 0.48,
+      "acc_stderr,none": 0.05021167315686783,
+      "acc_norm,none": 0.48,
+      "acc_norm_stderr,none": 0.05021167315686783
+    }
+  },
+  "versions": {
+    "arc_easy": 1.0,
+    "hellaswag": 1.0
+  },
+  "n_samples": {
+    "arc_easy": {
+      "original": 2376,
+      "effective": 100
+    },
+    "hellaswag": {
+      "original": 10042,
+      "effective": 100
+    }
+  }
+}

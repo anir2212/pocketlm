@@ -1,0 +1,238 @@
+{
+  "rows": [
+    {
+      "format": "F16",
+      "grammar": "plain",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_F16_plain.json",
+          "sha256": "106b3b0098a896c6ab2ccfba4b26a91ab299e0cccf8fe529e23a68761a1c1b47"
+        },
+        "latency": {
+          "path": "runs/latency_F16_plain.json",
+          "sha256": "e841d40185d0c541b1524c778a4dce7c1e94c75b8f763626485376184bfa5c1c"
+        }
+      },
+      "examples": 728,
+      "json_validity": 0.9945054945054945,
+      "full_call_exact_match": 0.8421052631578947,
+      "accuracy_ci95": [
+        0.8110516934046346,
+        0.872072072072072
+      ],
+      "prompt_tokens_per_second": 1211.846675,
+      "llama_bench_generation_tokens_per_second": 99.433088,
+      "request_generation_tokens_per_second": 90.65413564516658,
+      "time_to_first_token_seconds": 0.6414395415049512,
+      "time_to_first_token_p95_seconds": 0.7406699169951025,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 1152.0,
+      "file_mib": 948.1
+    },
+    {
+      "format": "F16",
+      "grammar": "grammar",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_F16_grammar.json",
+          "sha256": "69c0354a270a0bc6282f083e505548b3cb05411139e857b529ebca9222821540"
+        },
+        "latency": {
+          "path": "runs/latency_F16_grammar.json",
+          "sha256": "24451d17737f7743923e656e367d73eeb4d947da3265634aa2df2b3d77c00baf"
+        }
+      },
+      "examples": 728,
+      "json_validity": 1.0,
+      "full_call_exact_match": 0.8511796733212341,
+      "accuracy_ci95": [
+        0.82174688057041,
+        0.8808193668528864
+      ],
+      "prompt_tokens_per_second": 1220.370323,
+      "llama_bench_generation_tokens_per_second": 99.572052,
+      "request_generation_tokens_per_second": 91.05371499882636,
+      "time_to_first_token_seconds": 0.6421420624974417,
+      "time_to_first_token_p95_seconds": 0.761814500001492,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 1153.1,
+      "file_mib": 948.1
+    },
+    {
+      "format": "Q8_0",
+      "grammar": "plain",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_Q8_0_plain.json",
+          "sha256": "23e7593d9b2b9bc1ac564f3b2c8534e0edcad361ffac1f8faaef083c0e0a6c2c"
+        },
+        "latency": {
+          "path": "runs/latency_Q8_0_plain.json",
+          "sha256": "268a2b088089ddf4d88725896e8a056e69f15cec8a1dd3b6892c37514a0e52de"
+        }
+      },
+      "examples": 728,
+      "json_validity": 0.9945054945054945,
+      "full_call_exact_match": 0.8457350272232305,
+      "accuracy_ci95": [
+        0.8160291438979964,
+        0.8765652951699463
+      ],
+      "prompt_tokens_per_second": 1256.890189,
+      "llama_bench_generation_tokens_per_second": 183.512586,
+      "request_generation_tokens_per_second": 130.74256248754392,
+      "time_to_first_token_seconds": 0.5456956250127405,
+      "time_to_first_token_p95_seconds": 0.734758041013265,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 1131.4,
+      "file_mib": 506.5
+    },
+    {
+      "format": "Q8_0",
+      "grammar": "grammar",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_Q8_0_grammar.json",
+          "sha256": "3a9aa7a55974665f94e5417d8966415908c138d234f46015240a488443fee9d0"
+        },
+        "latency": {
+          "path": "runs/latency_Q8_0_grammar.json",
+          "sha256": "b54e3f980890908b88791f16ce1d4a083b9975ad1d867c042c47f3bb6a24a405"
+        }
+      },
+      "examples": 728,
+      "json_validity": 1.0,
+      "full_call_exact_match": 0.852994555353902,
+      "accuracy_ci95": [
+        0.8250460405156538,
+        0.8840579710144928
+      ],
+      "prompt_tokens_per_second": 1262.615955,
+      "llama_bench_generation_tokens_per_second": 184.452034,
+      "request_generation_tokens_per_second": 151.12274074801576,
+      "time_to_first_token_seconds": 0.5331309790053638,
+      "time_to_first_token_p95_seconds": 0.5741881660069339,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 1130.0,
+      "file_mib": 506.5
+    },
+    {
+      "format": "Q5_K_M",
+      "grammar": "plain",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_Q5_K_M_plain.json",
+          "sha256": "79e276ea9954835f852ec708365c5b88f646cf12b4589b199988ae8d5b1a0c24"
+        },
+        "latency": {
+          "path": "runs/latency_Q5_K_M_plain.json",
+          "sha256": "17378ed2e058cfb42d4cdfe8309034729f1edc45cbdf0715a59a0534e2cb9b30"
+        }
+      },
+      "examples": 728,
+      "json_validity": 0.9862637362637363,
+      "full_call_exact_match": 0.8493647912885662,
+      "accuracy_ci95": [
+        0.818018018018018,
+        0.8781362007168458
+      ],
+      "prompt_tokens_per_second": 1037.697104,
+      "llama_bench_generation_tokens_per_second": 164.751213,
+      "request_generation_tokens_per_second": 124.10348033533606,
+      "time_to_first_token_seconds": 0.7383898120024242,
+      "time_to_first_token_p95_seconds": 0.8317939170228783,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 777.4,
+      "file_mib": 400.6
+    },
+    {
+      "format": "Q5_K_M",
+      "grammar": "grammar",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_Q5_K_M_grammar.json",
+          "sha256": "381751b130d361a669d34ed5b886c987aa87cb43fefd80826a932e73bf5d5724"
+        },
+        "latency": {
+          "path": "runs/latency_Q5_K_M_grammar.json",
+          "sha256": "54ccafcc1dca68121d1a50316cfa65cd9bc97414787a8c55be17348cb9369bd0"
+        }
+      },
+      "examples": 728,
+      "json_validity": 1.0,
+      "full_call_exact_match": 0.8711433756805808,
+      "accuracy_ci95": [
+        0.8407871198568873,
+        0.8994413407821229
+      ],
+      "prompt_tokens_per_second": 931.004083,
+      "llama_bench_generation_tokens_per_second": 111.556924,
+      "request_generation_tokens_per_second": 121.45403378359354,
+      "time_to_first_token_seconds": 0.7776114790030988,
+      "time_to_first_token_p95_seconds": 1.0623237079998944,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 759.1,
+      "file_mib": 400.6
+    },
+    {
+      "format": "Q4_K_M",
+      "grammar": "plain",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_Q4_K_M_plain.json",
+          "sha256": "9120189ea38baa3a01340c7d1d5a5aa40b67b6157b9635165ffb90d43b07d59c"
+        },
+        "latency": {
+          "path": "runs/latency_Q4_K_M_plain.json",
+          "sha256": "01ae8994dfd5fdb9039d098e3e536fdf306a7b925656eed8813a4154ed53f436"
+        }
+      },
+      "examples": 728,
+      "json_validity": 0.9876373626373627,
+      "full_call_exact_match": 0.7967332123411979,
+      "accuracy_ci95": [
+        0.7624309392265194,
+        0.8306878306878307
+      ],
+      "prompt_tokens_per_second": 1045.436338,
+      "llama_bench_generation_tokens_per_second": 179.284599,
+      "request_generation_tokens_per_second": 146.3039295176493,
+      "time_to_first_token_seconds": 0.6684373544994742,
+      "time_to_first_token_p95_seconds": 0.7457632909936365,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 746.4,
+      "file_mib": 379.4
+    },
+    {
+      "format": "Q4_K_M",
+      "grammar": "grammar",
+      "sources": {
+        "quality": {
+          "path": "runs/gguf_eval_Q4_K_M_grammar.json",
+          "sha256": "891f9930d0f8249b27600db071abb83caa3f596da2ce26c779668c1172ef4475"
+        },
+        "latency": {
+          "path": "runs/latency_Q4_K_M_grammar.json",
+          "sha256": "c945b6f2205ad1f01d00963ecbf391edcd6095a65aafeda51f3ab0cb9a1d6f35"
+        }
+      },
+      "examples": 728,
+      "json_validity": 1.0,
+      "full_call_exact_match": 0.8203266787658802,
+      "accuracy_ci95": [
+        0.7869158878504673,
+        0.8547486033519553
+      ],
+      "prompt_tokens_per_second": 1092.922087,
+      "llama_bench_generation_tokens_per_second": 164.281189,
+      "request_generation_tokens_per_second": 147.53848839753215,
+      "time_to_first_token_seconds": 0.6655330624926137,
+      "time_to_first_token_p95_seconds": 0.714434416993754,
+      "request_repetitions": 20,
+      "peak_server_rss_mib": 744.2,
+      "file_mib": 379.4
+    }
+  ],
+  "chart": "bench/quant_pareto.png",
+  "note": "All quality runs use the same generated holdout. Accuracy CI is bootstrap over examples. Request speed is a median of 20 repeated requests to one warm server, not a general device SLA. The fixed-length llama-bench throughput omits grammar."
+}
