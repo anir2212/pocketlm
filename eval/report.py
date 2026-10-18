@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import tempfile
@@ -11,8 +12,12 @@ from pathlib import Path
 
 def read_row(name: str, grammar: str, directory: Path) -> dict:
     label = f"{name}_{grammar}"
-    quality = json.loads((directory / f"gguf_eval_{label}.json").read_text())
-    latency = json.loads((directory / f"latency_{label}.json").read_text())
+    quality_path = directory / f"gguf_eval_{label}.json"
+    latency_path = directory / f"latency_{label}.json"
+    quality_bytes = quality_path.read_bytes()
+    latency_bytes = latency_path.read_bytes()
+    quality = json.loads(quality_bytes)
+    latency = json.loads(latency_bytes)
     bench = latency["llama_bench"]
     prompt = next((run["avg_ts"] for run in bench if run["n_prompt"] == 512
                    and run["n_gen"] == 0), None)
@@ -20,6 +25,12 @@ def read_row(name: str, grammar: str, directory: Path) -> dict:
                        and run["n_prompt"] == 0), None)
     return {
         "format": name, "grammar": grammar,
+        "sources": {
+            "quality": {"path": str(quality_path),
+                        "sha256": hashlib.sha256(quality_bytes).hexdigest()},
+            "latency": {"path": str(latency_path),
+                        "sha256": hashlib.sha256(latency_bytes).hexdigest()},
+        },
         "examples": quality["metrics"]["examples"],
         "json_validity": quality["metrics"]["json_validity"],
         "full_call_exact_match": quality["metrics"]["full_call_exact_match"],

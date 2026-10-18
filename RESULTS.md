@@ -1,5 +1,7 @@
 # PocketLM measured results
 
+Sections follow the order in which checks were completed. A later measured section supersedes an earlier statement that a run was still pending at that checkpoint.
+
 ## M1: scratch decoder on TinyStories
 
 The run used the committed `configs/tiny_gpt.yaml`, seed 7, pinned TinyStories revision `f54c09fd23315a6f9c86f9dc80f725de7d8f9c64`, 5,000 streamed training stories (4,197,328 UTF-8 bytes), and 500 streamed validation stories (406,229 bytes). The model has **12,807,680 trainable parameters**, four decoder blocks, eight attention heads, 512-wide embeddings, learned positions, and an explicit future-token mask. It trained for 1,000 steps on an Apple M3 Pro MPS device in **64.267 seconds**. Training windows were sampled from concatenated stories, and validation used five random batches at each checkpoint. These small sampled validation estimates are useful for a learning curve but are not a full-corpus benchmark.
@@ -127,3 +129,31 @@ The pinned llama.cpp binaries ran on this Apple M3 Pro Mac (macOS 15.3.1, arm64)
 | Q4_K_M plain | 379.38 | 1081.03 | 184.32 | 0.757 s | 0.862 s | 718.3 |
 
 Q4_K_M generation throughput was **1.77× F16** in these fixed-length CPU runs, while its model file was 40.0% as large and its grammar-run sampled RSS was 35.8% lower. F16 processed the fixed prompt faster. The benchmark throughput rows do **not** apply grammar, even when paired with a grammar HTTP row; the Q4 plain/grammar throughput difference is run variation, not a measured grammar overhead. The HTTP timings are one short request each and cannot establish p50/p95 latency or a reliable grammar latency difference. RSS was sampled and can miss a brief peak. Q8_0/Q5_K_M and broader latency distributions remain unmeasured.
+
+## Complete local GGUF latency matrix, 18 October 2026
+
+After the eight full quality runs, `GGUF_PHASE=latency make eval-gguf-resume` completed all eight repeated-request cells without rerunning quality. Pinned llama.cpp commit `23b0202` ran on this Apple M3 Pro with four CPU threads and zero GPU layers. For each format and decoding mode, `llama-bench` made three fixed-length 512-prompt-token and 128-generation-token repetitions; a separate local server made one warmup and **20 repeated requests with the same 614-token prompt**. The server emitted about 15 tokens per request. [The compact report](bench/quant_report.json) records file size, quality, median request generation speed, sampled RSS, source-file SHA-256 hashes, and the timings; [the chart](bench/quant_pareto.png) plots the observed quality/speed tradeoff. Raw request samples remain in ignored `runs/latency_*.json`.
+
+| Format and mode | File MiB | Full-call exact, 551 calls | Median request generation tokens/s | Median first token | First-token p95 of 20 | Peak sampled RSS MiB |
+|---|---:|---:|---:|---:|---:|---:|
+| F16 plain | 948.1 | 84.21% | 90.7 | 0.641 s | 0.741 s | 1152.0 |
+| F16 grammar | 948.1 | 85.12% | 91.1 | 0.642 s | 0.762 s | 1153.1 |
+| Q8_0 plain | 506.5 | 84.57% | 130.7 | 0.546 s | 0.735 s | 1131.4 |
+| Q8_0 grammar | 506.5 | 85.30% | 151.1 | 0.533 s | 0.574 s | 1130.0 |
+| Q5_K_M plain | 400.6 | 84.94% | 124.1 | 0.738 s | 0.832 s | 777.4 |
+| Q5_K_M grammar | 400.6 | 87.11% | 121.5 | 0.778 s | 1.062 s | 759.1 |
+| Q4_K_M plain | 379.4 | 79.67% | 146.3 | 0.668 s | 0.746 s | 746.4 |
+| Q4_K_M grammar | 379.4 | 82.03% | 147.5 | 0.666 s | 0.714 s | 744.2 |
+
+Quality percentages come from the separate **728-request generated holdout**; the column above is restricted to its 551 call targets. The 20 latency requests repeat one prompt, so the p95 is merely the nineteenth ordered observation in one warm-server sequence, not a workload-wide tail estimate. Sequential runs can differ with scheduling and thermal state. The fixed-length `llama-bench` rows do not apply a grammar, even when paired with a grammar request row. File size, sampled RSS, request generation rate, and first-token delay describe different resources; neither this chart nor a single number proves a universally best format.
+
+## Bounded general-capability diagnostic, 18 October 2026
+
+EleutherAI lm-eval **0.4.13** evaluated the pinned Qwen2.5-0.5B-Instruct base and the selected rank-8 LoRA adapter on the **same cached ARC Easy and HellaSwag datasets**. Each run used the first **100 questions per task**, zero-shot scoring, batch size one, a Qwen chat template, and this Mac's MPS device. The two committed raw reports, [base](bench/base_general_eval_100.json) and [rank 8](bench/sft_r8_general_eval_100.json), record the model revision, task versions, effective sample counts, and exact scores. Their settings and counts were checked for equality before comparison.
+
+| Task, 100 questions | Base accuracy | Rank-8 accuracy | Base length-normalized accuracy | Rank-8 length-normalized accuracy |
+|---|---:|---:|---:|---:|
+| ARC Easy | 47% | 51% | 43% | 43% |
+| HellaSwag | 48% | 44% | 48% | 51% |
+
+The one-run standard errors for these 100-question proportions are about **five percentage points**. Differences of zero to four points here do not establish improvement or catastrophic forgetting. The reports do not save per-question predictions, so no paired interval was calculated. A full task run, repeated seeds or a larger untouched suite would be needed for a stronger general-capability claim. Both datasets were already cached; this diagnostic did not download new task data or use Colab.
