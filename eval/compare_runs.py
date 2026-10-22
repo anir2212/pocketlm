@@ -6,6 +6,8 @@ import argparse
 import hashlib
 import json
 import random
+from fractions import Fraction
+from math import comb
 from pathlib import Path
 
 from eval.tool_eval import item_metrics
@@ -15,6 +17,45 @@ def _load(path: Path) -> tuple[dict, list[dict]]:
     report = json.loads(path.read_text())
     rows = report["predictions"]
     return report, rows
+
+
+def exact_mcnemar(left_only: int, right_only: int) -> float:
+    """Two-sided exact McNemar p-value: a binomial test on the discordant pairs."""
+    if left_only < 0 or right_only < 0:
+        raise ValueError("discordant counts must be nonnegative")
+    discordant = left_only + right_only
+    if not discordant:
+        return 1.0
+    tail = sum(comb(discordant, k) for k in range(min(left_only, right_only) + 1))
+    return float(min(Fraction(1), 2 * Fraction(tail, 2 ** discordant)))
+
+
+def paired_summary(values: list[tuple[int, int]], seed: int = 17,
+                   repetitions: int = 1000) -> dict:
+    """Paired counts, a bootstrap interval and an exact test for one 0/1 metric."""
+    if not values:
+        raise ValueError("no paired values")
+    n = len(values)
+    deltas = []
+    rng = random.Random(seed)
+    for _ in range(repetitions):
+        sample = [rng.choice(values) for _ in values]
+        deltas.append(sum(right - left for left, right in sample) / n)
+    deltas.sort()
+    left_only = sum(left and not right for left, right in values)
+    right_only = sum(right and not left for left, right in values)
+    return {
+        "left_correct": sum(left for left, _ in values),
+        "right_correct": sum(right for _, right in values),
+        "both_correct": sum(left and right for left, right in values),
+        "left_only": left_only,
+        "right_only": right_only,
+        "both_wrong": sum(not left and not right for left, right in values),
+        "right_minus_left": sum(right - left for left, right in values) / n,
+        "paired_bootstrap_95pct": [deltas[int(0.025 * repetitions)],
+                                   deltas[min(repetitions - 1, int(0.975 * repetitions))]],
+        "exact_mcnemar_p_two_sided": exact_mcnemar(left_only, right_only),
+    }
 
 
 def compare(left_path: Path, right_path: Path, output: Path,
@@ -31,26 +72,10 @@ def compare(left_path: Path, right_path: Path, output: Path,
         second = item_metrics({"target": b["gold"]}, b.get("output", b.get("content", "")))
         pairs.append({metric: (int(first[metric]), int(second[metric]))
                       for metric in ("full_exact", "target_valid", "json_valid")})
-    comparisons = {}
-    for metric in ("full_exact", "target_valid", "json_valid"):
-        values = [pair[metric] for pair in pairs]
-        n = len(values)
-        deltas = []
-        rng = random.Random(seed)
-        for _ in range(repetitions):
-            sample = [rng.choice(values) for _ in values]
-            deltas.append(sum(right - left for left, right in sample) / n)
-        deltas.sort()
-        comparisons[metric] = {
-            "left_correct": sum(left for left, _ in values),
-            "right_correct": sum(right for _, right in values),
-            "both_correct": sum(left and right for left, right in values),
-            "left_only": sum(left and not right for left, right in values),
-            "right_only": sum(right and not left for left, right in values),
-            "right_minus_left": sum(right - left for left, right in values) / n,
-            "paired_bootstrap_95pct": [deltas[int(0.025 * repetitions)],
-                                       deltas[min(repetitions - 1, int(0.975 * repetitions))]],
-        }
+    comparisons = {
+        metric: paired_summary([pair[metric] for pair in pairs], seed, repetitions)
+        for metric in ("full_exact", "target_valid", "json_valid")
+    }
     result = {
         "examples": len(pairs), "seed": seed, "bootstrap_repetitions": repetitions,
         "left": {"path": str(left_path),

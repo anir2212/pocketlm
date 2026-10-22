@@ -16,7 +16,7 @@ A device assistant has to turn vague requests into a small set of safe, structur
 | M5–M6: evaluate and quantize | All eight GGUF format/grammar quality cells and 20-request-per-cell CPU latency checks are recorded in [RESULTS.md](RESULTS.md). These are synthetic requests and one repeated latency prompt. |
 | M7–M8: stretch and demo | Multi-GPU and student distillation are unmeasured. The local demo uses mock device state. |
 
-The next quality check is an untouched set of human-written requests, especially paraphrases and multi-call instructions. No real-device reliability is claimed.
+The next quality check is an untouched set of human-written requests, especially paraphrases and multi-call instructions. The tooling for it is ready: [authoring rules](data/human_eval/AUTHORING.md), a validator (`make human-validate`) and a runner (`make human-eval HUMAN_SET=…`) that scores the rank-8 adapter and the Q4_K_M GGUF on the same frozen rows and compares them with a paired McNemar test. No human-written rows exist yet, and the scorer refuses the template rows. No real-device reliability is claimed.
 
 ## Run locally
 
