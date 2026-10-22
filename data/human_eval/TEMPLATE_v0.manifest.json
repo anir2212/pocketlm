@@ -1,0 +1,18 @@
+{
+  "format": "pocketlm-human-eval/1",
+  "set_version": "TEMPLATE_v0",
+  "rows_file": "TEMPLATE_v0.jsonl",
+  "rows_sha256": "c5c3cb16db409e8af19202026b0f66cee275a72c74184dfed6fe1823f5776575",
+  "tool_schema_sha256": "5df7bca63705b829eb6acfe32f522be2fd08749bd186e18803c38b3c4ac99a19",
+  "example": true,
+  "created": "2026-10-20",
+  "authors": [
+    {
+      "author_id": "template_placeholder",
+      "permission": "TEMPLATE ONLY. The coding agent wrote these four placeholder rows to show the file format. They are not human-written and the scorer refuses them.",
+      "consent_date": "2026-10-20",
+      "seen_project_prompts": true
+    }
+  ],
+  "collection_protocol": "TEMPLATE ONLY. Copy this manifest for a real set, set example to false, list real pseudonymous authors with their permission statements, and describe how requests were written."
+}

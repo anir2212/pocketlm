@@ -1,8 +1,15 @@
-.PHONY: tiny test data sft sft-cuda dpo quant eval eval-general eval-gguf eval-gguf-resume audit-errors
+.PHONY: tiny test data sft sft-cuda dpo quant eval eval-general eval-gguf eval-gguf-resume audit-errors \
+	human-validate human-eval
 
 PYTHON := .venv/bin/python
 GGUF_PHASE ?= all
 SFT_RUNS := runs/sft_r8_lr1e4_2k runs/sft_r16_lr2e4_2k runs/sft_r32_lr2e4_2k
+HUMAN_TEMPLATE := data/human_eval/TEMPLATE_v0.manifest.json
+HUMAN_SET ?=
+HUMAN_TAG ?= human_v1
+HUMAN_ADAPTER ?= runs/sft_r8_lr1e4_2k/adapter
+HUMAN_GGUF ?= artifacts/model-Q4_K_M.gguf
+HUMAN_GRAMMAR ?= quant/grammar.gbnf
 
 tiny:
 	.venv/bin/python -m scratch.train_tiny --config configs/tiny_gpt.yaml --output runs/tiny_gpt
@@ -68,3 +75,23 @@ eval-gguf-resume:
 
 audit-errors:
 	$(PYTHON) -m eval.error_audit
+
+human-validate:
+	$(PYTHON) -m eval.human_set --manifest "$(or $(HUMAN_SET),$(HUMAN_TEMPLATE))"
+
+human-eval:
+	@test -n "$(HUMAN_SET)" || { echo "Set HUMAN_SET to a real human-written manifest; the template is never scored." >&2; exit 2; }
+	@: "$${LLAMA_CPP_DIR:?Set LLAMA_CPP_DIR to pinned llama.cpp checkout}"
+	$(PYTHON) -m eval.human_set --manifest "$(HUMAN_SET)" --output bench/human_eval/$(HUMAN_TAG)_validation.json
+	$(PYTHON) -m eval.human_eval predict-hf --manifest "$(HUMAN_SET)" --adapter "$(HUMAN_ADAPTER)" \
+	  --output runs/human_eval/$(HUMAN_TAG)_adapter.json
+	$(PYTHON) -m eval.human_eval predict-gguf --manifest "$(HUMAN_SET)" --model "$(HUMAN_GGUF)" \
+	  --server-binary "$$LLAMA_CPP_DIR/build/bin/llama-server" --grammar "$(HUMAN_GRAMMAR)" \
+	  --output runs/human_eval/$(HUMAN_TAG)_gguf.json
+	$(PYTHON) -m eval.human_eval score --manifest "$(HUMAN_SET)" \
+	  --predictions runs/human_eval/$(HUMAN_TAG)_adapter.json --output bench/human_eval/$(HUMAN_TAG)_adapter_score.json
+	$(PYTHON) -m eval.human_eval score --manifest "$(HUMAN_SET)" \
+	  --predictions runs/human_eval/$(HUMAN_TAG)_gguf.json --output bench/human_eval/$(HUMAN_TAG)_gguf_score.json
+	$(PYTHON) -m eval.human_eval compare --manifest "$(HUMAN_SET)" \
+	  --left runs/human_eval/$(HUMAN_TAG)_adapter.json --right runs/human_eval/$(HUMAN_TAG)_gguf.json \
+	  --output bench/human_eval/$(HUMAN_TAG)_adapter_vs_gguf.json

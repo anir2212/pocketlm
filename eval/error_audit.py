@@ -19,7 +19,7 @@ def _kind(target: dict) -> str:
     return next(key for key in ("calls", "clarification", "refusal") if key in target)
 
 
-def _stratum(row: dict) -> str:
+def stratum(row: dict) -> str:
     target = row["target"]
     if "calls" not in target:
         return _kind(target)
@@ -84,7 +84,7 @@ def audit(input_path: Path, runs_dir: Path, output_path: Path,
             for row, prediction in zip(rows, predictions, strict=True):
                 category = classify(row["target"], prediction["content"])
                 counts[category] += 1
-                strata[_stratum(row)][category] += 1
+                strata[stratum(row)][category] += 1
                 if category != "exact" and len(example_ids[category]) < 5:
                     example_ids[category].append(row["id"])
             result["modes"][label] = {
