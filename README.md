@@ -12,7 +12,7 @@ A device assistant has to turn vague requests into a small set of safe, structur
 |---|---|
 | M1–M2: scratch model and corpus | A 12.8M-parameter byte-level decoder completed 1,000 steps; the schema-checked corpus has 8,697 total rows, including 728 held-out synthetic device requests. |
 | M3: LoRA / QLoRA | Rank-8 LoRA got 637/728 exact targets; the returned NF4-trained rank-16 adapter got 604/728 under local CPU evaluation. These runs changed several training factors together. |
-| M4: preference optimization | DPO training code is present; a completed DPO comparison is not measured. |
+| M4: preference optimization | A saved 2,000-prompt pass kept only nine on-policy negatives. A beta-0.1 smoke adapter completed two CPU steps; no beta comparison or held-out DPO score exists. |
 | M5–M6: evaluate and quantize | All eight GGUF format/grammar quality cells and 20-request-per-cell CPU latency checks are recorded in [RESULTS.md](RESULTS.md). These are synthetic requests and one repeated latency prompt. |
 | M7–M8: stretch and demo | Multi-GPU and student distillation are unmeasured. The local demo uses mock device state. |
 
@@ -29,7 +29,9 @@ make data
 uv run --no-sync pytest -q tests
 ```
 
-The scratch-model run and corpus build are reproducible locally. LoRA and GGUF comparisons have measured results; the DPO path remains unmeasured. The optional [Colab notebook](colab/Run_PocketLM.ipynb) runs one GPU experiment at a time. Build its upload archive with `uv run python -m colab.build_bundle`.
+The scratch-model run and corpus build are reproducible locally. LoRA and GGUF comparisons have measured results; the full DPO comparison remains unmeasured. The optional [Colab notebook](colab/Run_PocketLM.ipynb) runs one GPU experiment at a time. Build its upload archive with `uv run python -m colab.build_bundle`.
+
+The DPO, held-out evaluation, general evaluation, and merge targets now default to the completed validation-selected rank-8 adapter at `runs/sft_r8_lr1e4_2k/adapter`. The previous selector file is absent because the three-rank LoRA comparison did not finish. After selecting a new adapter by internal validation loss, pass `SFT_ADAPTER=/path/to/adapter` explicitly. The targets stop before expensive work if that adapter file is missing. The saved preference report retained only **9** negatives, and the two-step beta-0.1 run was a smoke check, not a measured DPO quality result. See the [dated artifact audit](RESULTS.md#dpo-entry-point-and-saved-pair-audit-11-november-2026).
 
 A completed NF4 QLoRA run has been returned from Colab and checked against the local corpus and training config. Its adapter was evaluated on the same 728 synthetic held-out requests as the local rank-8 LoRA adapter, using an unquantized CPU base for both. QLoRA got 604 exact targets and rank 8 got 637; the results include paired counts and limitations. The weights and Colab ZIP stay outside Git.
 

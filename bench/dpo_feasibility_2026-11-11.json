@@ -1,0 +1,32 @@
+{
+  "audit_date": "2026-11-11",
+  "scope": "Read-only audit of saved local artifacts; no new preference sampling, DPO training, or held-out evaluation",
+  "selected_adapter": {
+    "path": "runs/sft_r8_lr1e4_2k/adapter",
+    "adapter_model_sha256": "2cb8592e29f7a3e2404b679b83aad6495735a88548785d6dcae335928141ea49"
+  },
+  "saved_preference_run": {
+    "pairs_path": "runs/preference_pairs.jsonl",
+    "pairs_sha256": "943f71c8d0575633dfb4905b1f8e6608d2f3594089ff06db97c75877a4ed6756",
+    "report_path": "runs/preference_pairs.report.json",
+    "report_sha256": "de4783185739854cd233c792ee9f72f0aecb0fc4642fdd11e050241ab780cd6c",
+    "prompts_sampled": 2000,
+    "pairs_kept": 9,
+    "reasons": {
+      "wrong_valid_output": 4,
+      "invalid_arguments": 2,
+      "hallucinated_tool": 3
+    }
+  },
+  "existing_smoke_run": {
+    "metrics_path": "runs/dpo_smoke/metrics.json",
+    "metrics_sha256": "2f49272cfe069efc61e445865c373dd9651f6c4822c02867a7020c1490bfc9bc",
+    "beta": 0.1,
+    "pairs_train": 8,
+    "pairs_validation": 1,
+    "steps_completed": 2,
+    "device": "cpu",
+    "duration_seconds": 79.37794350000331
+  },
+  "limitation": "Nine mined negatives and one preference-validation pair cannot support a useful full DPO comparison. The smoke adapter was not scored on the 728-row holdout."
+}

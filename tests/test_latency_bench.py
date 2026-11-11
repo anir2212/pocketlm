@@ -7,6 +7,10 @@ from eval import latency_bench
 
 
 def test_http_latency_aggregation_keeps_distribution(monkeypatch, tmp_path):
+    fixture = tmp_path / "data" / "processed" / "test.jsonl"
+    fixture.parent.mkdir(parents=True)
+    fixture.write_text(json.dumps({"source": "synthetic_device", "prompt": "fixture"}) + "\n")
+    monkeypatch.chdir(tmp_path)
     model = tmp_path / "model.gguf"
     model.write_bytes(b"model")
     output = tmp_path / "latency.json"

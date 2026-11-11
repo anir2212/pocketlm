@@ -4,10 +4,13 @@
 PYTHON := .venv/bin/python
 GGUF_PHASE ?= all
 SFT_RUNS := runs/sft_r8_lr1e4_2k runs/sft_r16_lr2e4_2k runs/sft_r32_lr2e4_2k
+# Rank 8 is the completed adapter selected by internal validation loss.
+# Override this after a new comparison; the partial rank-16 run is not eligible.
+SFT_ADAPTER ?= runs/sft_r8_lr1e4_2k/adapter
 HUMAN_TEMPLATE := data/human_eval/TEMPLATE_v0.manifest.json
 HUMAN_SET ?=
 HUMAN_TAG ?= human_v1
-HUMAN_ADAPTER ?= runs/sft_r8_lr1e4_2k/adapter
+HUMAN_ADAPTER ?= $(SFT_ADAPTER)
 HUMAN_GGUF ?= artifacts/model-Q4_K_M.gguf
 HUMAN_GRAMMAR ?= quant/grammar.gbnf
 
@@ -32,24 +35,28 @@ sft-cuda:
 	$(PYTHON) -m train.sft --config configs/sft_qlora.yaml --output runs/sft_qlora_r16_2k --max-rows 2000
 
 dpo:
-	$(PYTHON) -m train.make_preferences --adapter "$$(cat runs/best_sft_adapter.txt)"
-	$(PYTHON) -m train.dpo --adapter "$$(cat runs/best_sft_adapter.txt)" --beta 0.1 --output runs/dpo_beta01
-	$(PYTHON) -m train.dpo --adapter "$$(cat runs/best_sft_adapter.txt)" --beta 0.3 --output runs/dpo_beta03
+	@test -f "$(SFT_ADAPTER)/adapter_model.safetensors" || { echo "Missing SFT adapter: $(SFT_ADAPTER)" >&2; exit 2; }
+	$(PYTHON) -m train.make_preferences --adapter "$(SFT_ADAPTER)"
+	$(PYTHON) -m train.dpo --adapter "$(SFT_ADAPTER)" --beta 0.1 --output runs/dpo_beta01
+	$(PYTHON) -m train.dpo --adapter "$(SFT_ADAPTER)" --beta 0.3 --output runs/dpo_beta03
 
 quant:
-	$(PYTHON) -m train.merge --adapter "$$(cat runs/best_sft_adapter.txt)" --output artifacts/merged_sft
+	@test -f "$(SFT_ADAPTER)/adapter_model.safetensors" || { echo "Missing SFT adapter: $(SFT_ADAPTER)" >&2; exit 2; }
+	$(PYTHON) -m train.merge --adapter "$(SFT_ADAPTER)" --output artifacts/merged_sft
 	LLAMA_CPP_DIR="$${LLAMA_CPP_DIR:?Set LLAMA_CPP_DIR to pinned llama.cpp checkout}" quant/convert_gguf.sh artifacts/merged_sft artifacts/model-F16.gguf
 	LLAMA_CPP_DIR="$${LLAMA_CPP_DIR:?Set LLAMA_CPP_DIR to pinned llama.cpp checkout}" quant/quantise.sh artifacts/model-F16.gguf artifacts
 
 eval:
+	@test -f "$(SFT_ADAPTER)/adapter_model.safetensors" || { echo "Missing SFT adapter: $(SFT_ADAPTER)" >&2; exit 2; }
 	$(PYTHON) -m eval.tool_eval --output runs/base_tool_eval.json
-	$(PYTHON) -m eval.tool_eval --adapter "$$(cat runs/best_sft_adapter.txt)" --output runs/sft_tool_eval.json
+	$(PYTHON) -m eval.tool_eval --adapter "$(SFT_ADAPTER)" --output runs/sft_tool_eval.json
 	$(PYTHON) -m eval.tool_eval --adapter runs/dpo_beta01/adapter --output runs/dpo_beta01_tool_eval.json
 	$(PYTHON) -m eval.tool_eval --adapter runs/dpo_beta03/adapter --output runs/dpo_beta03_tool_eval.json
 
 eval-general:
+	@test -f "$(SFT_ADAPTER)/adapter_model.safetensors" || { echo "Missing SFT adapter: $(SFT_ADAPTER)" >&2; exit 2; }
 	$(PYTHON) -m eval.general_eval --output runs/base_general_eval.json
-	$(PYTHON) -m eval.general_eval --adapter "$$(cat runs/best_sft_adapter.txt)" --output runs/sft_general_eval.json
+	$(PYTHON) -m eval.general_eval --adapter "$(SFT_ADAPTER)" --output runs/sft_general_eval.json
 
 eval-gguf:
 	@set -eu; \
