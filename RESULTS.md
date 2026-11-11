@@ -2,6 +2,14 @@
 
 Sections follow the order in which checks were completed. A later measured section supersedes an earlier statement that a run was still pending at that checkpoint.
 
+## DPO entry point and saved-pair audit, 11 November 2026
+
+The completed rank-8 LoRA adapter remains the validation-selected SFT checkpoint. The `make dpo`, `make eval`, `make eval-general`, and `make quant` entry points previously read `runs/best_sft_adapter.txt`, which was never produced because the rank-16/32 comparison did not finish. They now default explicitly to `runs/sft_r8_lr1e4_2k/adapter` through `SFT_ADAPTER`; an override is required after a new selection. A missing adapter fails before an expensive target starts. This is a command-path correction, **not a new model result**.
+
+The [source-hashed artifact audit](bench/dpo_feasibility_2026-11-11.json) records that the existing on-policy sampling report drew 2,000 training prompts but retained only **9** incorrect nonempty generations: 4 wrong valid outputs, 2 invalid-argument outputs, and 3 unknown-tool outputs. The saved beta-0.1 smoke used 8 preference-training pairs and 1 validation pair, completed **2 CPU optimizer steps** in 79.38 seconds, and was not evaluated on the 728-row holdout. No beta-0.3 run or paired held-out DPO comparison was performed in this checkpoint. One validation pair and nine mined negatives are too small for a useful full DPO claim. Do not treat the smoke loss or an entry-point dry run as DPO quality evidence.
+
+For this correction, `make -n dpo eval eval-general quant` resolved the selected adapter without reading the missing selector file; a missing-adapter invocation stopped before sampling or training. `make test` passed **38 tests** and Ruff passed. These are command and offline checks, not a model run.
+
 ## M1: scratch decoder on TinyStories
 
 The run used the committed `configs/tiny_gpt.yaml`, seed 7, pinned TinyStories revision `f54c09fd23315a6f9c86f9dc80f725de7d8f9c64`, 5,000 streamed training stories (4,197,328 UTF-8 bytes), and 500 streamed validation stories (406,229 bytes). The model has **12,807,680 trainable parameters**, four decoder blocks, eight attention heads, 512-wide embeddings, learned positions, and an explicit future-token mask. It trained for 1,000 steps on an Apple M3 Pro MPS device in **64.267 seconds**. Training windows were sampled from concatenated stories, and validation used five random batches at each checkpoint. These small sampled validation estimates are useful for a learning curve but are not a full-corpus benchmark.
